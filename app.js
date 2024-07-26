@@ -7,12 +7,13 @@ const app=express()
 const categoryRouter=require('./routes/categoryRouter')
 const transactionRouter=require('./routes/transactionRouter')
 const transactionController = require('./controllers/transactionCtrl')
+require('dotenv').config();
 //connect to mongoose
-mongoose.connect('mongodb+srv://sameerkumar0635:2pI7mYkvfdDcJPY6@cluster0.wplla5l.mongodb.net/mern-expenses').then(()=>console.log('DB connected')).catch((e)=>console.log(e))
+mongoose.connect(process.env.MONGODB_URI).then(()=>console.log('DB connected')).catch((e)=>console.log(e))
 
 //Cors config
 const corsOptions = {
-    origin:['http://localhost:5173']
+    origin:[process.env.CORS_ORIGIN]
 }
 app.use(cors(corsOptions))
 //middlewares
